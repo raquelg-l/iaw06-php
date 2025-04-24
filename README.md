@@ -1,4 +1,5 @@
-# Library Management CRUD System [IAW06][ENG VER.]
+ENG. VER.
+# Library Management CRUD System (IAW06)
 
 ## Project Description  
 A web-based library management system implementing CRUD operations. Includes a Bootstrap interface and PHP/MySQL backend. This project is a class exercise for the subject IAW.
@@ -42,13 +43,15 @@ A web-based library management system implementing CRUD operations. Includes a B
 - Database operation separation  
 
 ## Community
-Please read the Code of Conduct before participating in the community.
+Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before participating in the community.
 
 ## License  
-This project is licensed under the MUT License - see the LICENSE file for details.
+This project is licensed under the MUT License - see the [LICENSE](LICENSE) file for details.
+<br><br><br>
 
 
-# Sistema de Xestión de Biblioteca CRUD [IAW06][GAL VER]
+GAL. VER.
+# Sistema de Xestión de Biblioteca CRUD (IAW06)
 
 ## Descrición do Proxecto  
 Sistema web de xestión de libros con operacións CRUD (Crear, Ler, Actualizar, Eliminar). Inclúe interface con Bootstrap e backend PHP/MySQL. Este proxecto é un exercicio de clase para a asignatura IAW.
@@ -92,7 +95,7 @@ Sistema web de xestión de libros con operacións CRUD (Crear, Ler, Actualizar, 
 - Separación de operacións de base de datos  
 
 ## Comunidade  
-Por favor, le o Código de Conduta antes de participar na comunidade.  
+Por favor, le o [Código de Conduta](CODE_OF_CONDUCT.md) antes de participar na comunidade.  
 
 ## Licenza  
-Este proxecto está baixo a Licenza MUT - consulta o ficheiro LICENSE para máis detalles.
+Este proxecto está baixo a Licenza MUT - consulta o ficheiro [LICENSE](LICENSE) para máis detalles.
