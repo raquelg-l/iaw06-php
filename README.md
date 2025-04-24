@@ -1,4 +1,4 @@
-[ENG VER.]
+ENG. VER.
 # Library Management CRUD System (IAW06)
 
 ## Project Description  
@@ -46,11 +46,11 @@ A web-based library management system implementing CRUD operations. Includes a B
 Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before participating in the community.
 
 ## License  
-This project is licensed under the MUT License - see the LICENSE file for details.
+This project is licensed under the MUT License - see the [LICENSE](LICENSE) file for details.
+<br><br><br>
 
 
-
-[GAL VER]
+GAL. VER.
 # Sistema de Xestión de Biblioteca CRUD (IAW06)
 
 ## Descrición do Proxecto  
@@ -98,4 +98,4 @@ Sistema web de xestión de libros con operacións CRUD (Crear, Ler, Actualizar, 
 Por favor, le o [Código de Conduta](CODE_OF_CONDUCT.md) antes de participar na comunidade.  
 
 ## Licenza  
-Este proxecto está baixo a Licenza MUT - consulta o ficheiro LICENSE para máis detalles.
+Este proxecto está baixo a Licenza MUT - consulta o ficheiro [LICENSE](LICENSE) para máis detalles.
