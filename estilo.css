@@ -1,0 +1,300 @@
+/* ===== ESTILOS BASE ===== */
+body {
+    font-family: 'Switzer', sans-serif;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+    padding-bottom: 100px;
+}
+
+/* ===== BARRA DE NAVEGACIÓN ===== */
+.navbar {
+    border-radius: 30px !important;
+    margin-bottom: 50px !important;
+}
+
+/* Botón hamburguesa móbil */
+.navbar-toggler {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 0 !important;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Iconos hamburguesa e X do menú móbil */
+.navbar-toggler .fa-bars,
+.navbar-toggler .fa-times {
+    color: white;
+    font-size: 24px;
+}
+
+.navbar-toggler .fa-times {
+    font-size: 24px;
+    line-height: 1;
+}
+
+/* Eliminar outline do botón */
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+}
+
+/* ===== SUBMENÚ XÉNEROS ===== */
+.navbar-nav .dropdown-menu {
+    background-color: #2699cb;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    min-width: 180px;
+    margin-top: 0.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.navbar-nav .dropdown-item {
+    padding: 10px 20px;
+    color: white;
+    font-weight: normal;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.navbar-nav .dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.navbar-nav .dropdown-item:hover,
+.navbar-nav .dropdown-item:focus {
+    background-color: #32ADE6;
+    color: white;
+    outline: none;
+}
+
+/* ===== BOTÓNS PRINCIPAIS (Engadir/Cancelar) ===== */
+.btn-info {
+    background-color: #32ADE6;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: #2699cb;
+}
+
+.btn-outline-info {
+    border: none;
+    color: #32ADE6;
+    background-color: transparent;
+}
+
+.btn-outline-info:hover {
+    border: 1px solid #32ADE6;
+    background-color: transparent;
+}
+
+/* ===== TÁBOA DE LIBROS ===== */
+.table th,
+.table td {
+    border-right: 0;
+    border-left: 0;
+    border-top: 2px solid #E5E5EA;
+    border-bottom: 2px solid #E5E5EA;
+    padding: 1rem;
+}
+
+.table thead th {
+    color: #8E8E93;
+    font-weight: normal;
+    background-color: white;
+}
+
+/* ===== IMAXE LIBRO PÁXINA PRINCIPAL ===== */
+.book-illustration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 100px !important;
+}
+
+.book-illustration {
+    max-width: 100px;
+    width: 100%;
+    height: auto;
+}
+
+/* ===== FORMULARIO DE ENGADIR ===== */
+.form-add-book-bg {
+    background-color: white !important;
+    box-shadow: none !important;
+}
+
+/* Campos do formulario */
+.form-add-book-bg .form-control,
+.form-add-book-bg .form-select {
+    background-color: #F2F2F7 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px;
+    padding-left: 20px;
+}
+
+/* Focus dos campos */
+.form-add-book-bg .form-control:focus,
+.form-add-book-bg .form-select:focus {
+    border: none !important;
+}
+
+/* Accións do formulario */
+.form-add-book-bg .form-actions {
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-start;
+}
+
+/* Imaxe do formulario */
+.illustration-phone {
+    max-width: 80%;
+    height: auto;
+    padding: 1rem;
+}
+
+/* Versión adaptable da imaxe do formulario */
+.illustration-adaptable {
+    max-width: 70%;
+    height: auto;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    font-family: 'Switzer', sans-serif;
+    font-size: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 15px 0;
+}
+
+/* ===== RESPONSIVE ===== */
+/* Menú dropdown xéneros */
+@media (max-width: 768px) {
+    .navbar-nav .dropdown-menu {
+        position: static !important;
+        width: 100%;
+        border: 0;
+        border-radius: 10px;
+        box-shadow: none;
+        margin-top: 0.25rem;
+    }
+
+    .navbar-nav .dropdown-item:hover {
+        border-radius: 10px;
+      }
+
+    .navbar-collapse.show .dropdown-menu {
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    .navbar-nav .dropdown-toggle::after {
+        display: none;
+    }
+}
+
+/* Vista móbil */
+@media (max-width: 576px) {
+    body {
+        margin-left: 6%;
+        margin-right: 6%;
+        padding-bottom: 70px;
+    }
+
+    h1 {
+        font-size: 2.5rem !important;
+    }
+
+    /* Botóns en móbil */
+    .btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn i {
+        margin: 0 !important;
+    }
+}
+
+/* Adaptacións específicas para táboas */
+@media (max-width: 750px) {
+    table.mobile-optimised thead {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+        visibility: hidden;
+    }
+
+    table.mobile-optimised,
+    table.mobile-optimised tbody,
+    table.mobile-optimised tr,
+    table.mobile-optimised td {
+        display: block;
+        width: 100%;
+        border-radius: 0px !important;
+        border-color: white;
+    }
+
+    table.mobile-optimised tr {
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        background: #F2F2F7;
+    }
+
+    table.mobile-optimised td {
+        text-align: left;
+        padding-left: 40%;
+        position: relative;
+        background: none;
+        border-bottom: 1px;
+    }
+
+    table.mobile-optimised td:before {
+        content: attr(data-th);
+        font-weight: normal !important;
+        position: absolute;
+        left: 1rem;
+        top: 0.8rem;
+        font-weight: bold;
+        color: #8E8E93;
+        white-space: nowrap;
+    }
+}
+
+/* Vista tablet */
+@media (max-width: 768px) {
+    .illustration-phone {
+        max-width: 50%;
+    }
+
+    .illustration-adaptable {
+        max-width: 50%;
+    }
+
+    /* Accións do formulario */
+    .form-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}
