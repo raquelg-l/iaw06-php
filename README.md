@@ -48,6 +48,8 @@ Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before participating in th
 ## License  
 This project is licensed under the MUT License - see the LICENSE file for details.
 
+
+
 [GAL VER]
 # Sistema de Xestión de Biblioteca CRUD (IAW06)
 
