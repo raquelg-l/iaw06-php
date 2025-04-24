@@ -1,4 +1,4 @@
-/* ===== ESTILOS BASE ===== */
+/* ===== BASE STYLES ===== */
 body {
     font-family: 'Switzer', sans-serif;
     margin-left: 5%;
@@ -7,13 +7,13 @@ body {
     padding-bottom: 100px;
 }
 
-/* ===== BARRA DE NAVEGACIÓN ===== */
+/* ===== NAVIGATION BAR ===== */
 .navbar {
     border-radius: 30px !important;
     margin-bottom: 50px !important;
 }
 
-/* Botón hamburguesa móbil */
+/* Mobile hamburger button */
 .navbar-toggler {
     position: relative;
     width: 40px;
@@ -25,7 +25,7 @@ body {
     justify-content: center;
 }
 
-/* Iconos hamburguesa e X do menú móbil */
+/* Hamburger and X menu icons */
 .navbar-toggler .fa-bars,
 .navbar-toggler .fa-times {
     color: white;
@@ -37,14 +37,14 @@ body {
     line-height: 1;
 }
 
-/* Eliminar outline do botón */
+/* Remove button outline */
 .navbar-toggler:focus,
 .navbar-toggler:active {
     outline: none;
     box-shadow: none;
 }
 
-/* ===== SUBMENÚ XÉNEROS ===== */
+/* ===== GENRES SUBMENU ===== */
 .navbar-nav .dropdown-menu {
     background-color: #2699cb;
     border: 0;
@@ -73,7 +73,7 @@ body {
     outline: none;
 }
 
-/* ===== BOTÓNS PRINCIPAIS (Engadir/Cancelar) ===== */
+/* ===== MAIN BUTTONS (Add/Cancel) ===== */
 .btn-info {
     background-color: #32ADE6;
     border: none;
@@ -94,7 +94,7 @@ body {
     background-color: transparent;
 }
 
-/* ===== TÁBOA DE LIBROS ===== */
+/* ===== BOOKS TABLE ===== */
 .table th,
 .table td {
     border-right: 0;
@@ -110,7 +110,7 @@ body {
     background-color: white;
 }
 
-/* ===== IMAXE LIBRO PÁXINA PRINCIPAL ===== */
+/* ===== MAIN PAGE BOOK ILLUSTRATION ===== */
 .book-illustration-container {
     display: flex;
     justify-content: center;
@@ -125,13 +125,13 @@ body {
     height: auto;
 }
 
-/* ===== FORMULARIO DE ENGADIR ===== */
+/* ===== ADD NEW BOOK FORM ===== */
 .form-add-book-bg {
     background-color: white !important;
     box-shadow: none !important;
 }
 
-/* Campos do formulario */
+/* Form fields */
 .form-add-book-bg .form-control,
 .form-add-book-bg .form-select {
     background-color: #F2F2F7 !important;
@@ -141,27 +141,27 @@ body {
     padding-left: 20px;
 }
 
-/* Focus dos campos */
+/* Field focus */
 .form-add-book-bg .form-control:focus,
 .form-add-book-bg .form-select:focus {
     border: none !important;
 }
 
-/* Accións do formulario */
+/* Form actions */
 .form-add-book-bg .form-actions {
     display: flex;
     gap: 2rem;
     justify-content: flex-start;
 }
 
-/* Imaxe do formulario */
+/* Form image */
 .illustration-phone {
     max-width: 80%;
     height: auto;
     padding: 1rem;
 }
 
-/* Versión adaptable da imaxe do formulario */
+/* Responsive image version */
 .illustration-adaptable {
     max-width: 70%;
     height: auto;
@@ -181,7 +181,7 @@ footer {
 }
 
 /* ===== RESPONSIVE ===== */
-/* Menú dropdown xéneros */
+/* Genres dropdown menu */
 @media (max-width: 768px) {
     .navbar-nav .dropdown-menu {
         position: static !important;
@@ -206,7 +206,7 @@ footer {
     }
 }
 
-/* Vista móbil */
+/* Mobile view */
 @media (max-width: 576px) {
     body {
         margin-left: 6%;
@@ -218,7 +218,7 @@ footer {
         font-size: 2.5rem !important;
     }
 
-    /* Botóns en móbil */
+    /* Mobile buttons */
     .btn {
         width: 40px;
         height: 40px;
@@ -233,7 +233,7 @@ footer {
     }
 }
 
-/* Adaptacións específicas para táboas */
+/* Table-specific adaptations */
 @media (max-width: 750px) {
     table.mobile-optimised thead {
         position: absolute;
@@ -278,7 +278,7 @@ footer {
     }
 }
 
-/* Vista tablet */
+/* Tablet view */
 @media (max-width: 768px) {
     .illustration-phone {
         max-width: 50%;
