@@ -1,3 +1,4 @@
+[ENG. VER.]
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge
@@ -126,3 +127,93 @@ enforcement ladder](https://github.com/mozilla/diversity).
 For answers to common questions about this code of conduct, see the FAQ at
 https://www.contributor-covenant.org/faq. Translations are available at
 https://www.contributor-covenant.org/translations.
+
+
+[GAL. VER.]
+# Contributor Covenant Code of Conduct
+
+## O noso compromiso
+
+Nós, como membros, contribuidores e líderes, comprometémonos a facer da participación na nosa
+comunidade unha experiencia libre de acoso para todos, independentemente da idade, tamaño corporal,
+discapacidade visible ou invisible, etnia, características sexuais, identidade e expresión de xénero,
+nivel de experiencia, educación, nivel socioeconómico, nacionalidade, aparencia persoal, raza,
+relixión, ou identidade e orientación sexual.
+
+Comprometémonos a actuar e interactuar de xeito que contribúa a unha comunidade aberta, acolledora,
+diversa, inclusiva e saudable.
+
+## Os nosos estándares
+
+Exemplos de comportamento que contribúen a un ambiente positivo para a nosa
+comunidade inclúen:
+
+* Mostrar empatía e amabilidade cara a outras persoas
+* Ser respectuoso con opinións, puntos de vista e experiencias diferentes
+* Ofrecer e aceptar con elegancia comentarios construtivos
+* Aceptar a responsabilidade e desculparse con quen foi afectado polos nosos erros,
+  e aprender da experiencia
+* Centrarse no que é mellor non só para nós como individuos, senón para a
+  comunidade no seu conxunto
+
+Exemplos de comportamento inaceptable inclúen:
+
+* O uso de linguaxe ou imaxes sexualizadas, e atención ou avances sexuais de calquera tipo
+* Comentarios troleadores, insultantes ou despectivos, e ataques persoais ou políticos
+* Acoso público ou privado
+* Publicar información privada doutras persoas, como un enderezo físico ou electrónico,
+  sen o seu permiso explícito
+* Outras condutas que poidan razoablemente ser consideradas inapropiadas nun
+  contexto profesional
+
+## Responsabilidades de aplicación
+
+Os líderes da comunidade son responsables de clarificar e aplicar os nosos estándares de
+comportamento aceptable e tomarán accións correctivas apropiadas e xustas en
+resposta a calquera comportamento que consideren inapropiado, ameazante, ofensivo,
+ou prexudicial.
+
+Os líderes da comunidade teñen o dereito e a responsabilidade de eliminar, editar, ou rexeitar
+comentarios, commits, código, edicións de wiki, issues, e outras contribucións que non están
+aliñadas con este Código de Conduta, e comunicarán as razóns para as decisións de moderación
+cando sexa apropiado.
+
+## Alcance
+
+Este Código de Conduta aplícase en todos os espazos da comunidade, e tamén se aplica cando
+un individuo representa oficialmente á comunidade en espazos públicos.
+Exemplos de representar á nosa comunidade inclúen usar un enderezo de correo electrónico oficial,
+publicar a través dunha conta oficial de redes sociais, ou actuar como representante designado
+nun evento en liña ou presencial.
+
+## Aplicación
+
+Os casos de comportamento abusivo, acosador, ou doutra forma inaceptable poden ser
+reportados aos líderes da comunidade responsables da aplicación en
+glez.erre@gmail.com.
+Todas as queixas serán revisadas e investigadas de xeito rápido e xusto.
+
+Todos os líderes da comunidade están obrigados a respectar a privacidade e seguridade do
+reportante de calquera incidente.
+
+## Directrices de aplicación
+
+Os líderes da comunidade seguirán estas Directrices de Impacto na Comunidade para determinar
+as consecuencias para calquera acción que consideren unha violación deste Código de Conduta:
+
+### 1. Corrección
+
+**Impacto na comunidade**: Uso de linguaxe inapropiada ou outro comportamento considerado
+non profesional ou non benvido na comunidade.
+
+**Consecuencia**: Unha advertencia privada e por escrito dos líderes da comunidade, proporcionando
+claridade sobre a natureza da violación e unha explicación de por que o
+comportamento foi inapropiado. Pódese solicitar unha desculpa pública.
+
+### 2. Advertencia
+
+**Impacto na comunidade**: Unha violación a través dun único incidente ou serie
+de accións.
+
+**Consecuencia**: Unha advertencia con consecuencias por comportamento continuado. Sen
+interacción coas persoas implicadas, incluíndo inte
