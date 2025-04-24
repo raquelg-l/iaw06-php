@@ -152,9 +152,9 @@
       <!-- Icons -->
       <div class="d-flex gap-3">
         <!-- Github icon -->
-        <a href="#" class="text-white"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/raquelg-l" class="text-white"><i class="fab fa-github"></i></a>
         <!-- Mail icon -->
-        <a href="#" class="text-white"><i class="fas fa-envelope"></i></a>
+        <a href="mailto:glez.erre@gmail.com" class="text-white"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
   </footer>
