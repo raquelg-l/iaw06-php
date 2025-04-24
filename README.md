@@ -95,4 +95,4 @@ Sistema web de xestión de libros con operacións CRUD (Crear, Ler, Actualizar, 
 Por favor, le o Código de Conduta antes de participar na comunidade.  
 
 ## Licenza  
-Este proxecto está baixo a Licenza MUT - consulta o ficheiro LICENSE para máis detalles.  
+Este proxecto está baixo a Licenza MUT - consulta o ficheiro LICENSE para máis detalles.
