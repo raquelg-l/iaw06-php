@@ -74,9 +74,9 @@
         <!-- Title -->
         <h1 class="fw-normal" style="font-family:'Switzer',sans-serif;font-size:2.5rem;">Lista de libros</h1>
         <!-- Add new button -->
-        <button class="btn btn-info text-white rounded-pill d-flex align-items-center px-4 py-2">
+        <button class="btn btn-info text-white rounded-pill d-flex align-items-center px-4 py-2" onclick="document.location='formulario.php'">
             <i class="fas fa-plus me-2"></i>
-            <span class="d-none d-sm-inline" onclick="document.location='formulario.php'">Engadir novo</span>
+            <span class="d-none d-sm-inline">Engadir novo</span>
         </button>
     </div>
 
