@@ -24,6 +24,10 @@
 </head>
 
 <body class="bg-white">
+
+
+
+  
   <!-- Navigation bar -->
   <nav class="navbar navbar-expand-md navbar-dark bg-black rounded-pill px-3 py-2 my-3">
     <!-- Logo -->
@@ -36,7 +40,6 @@
       <i class="fas fa-bars"></i>
       <i class="fas fa-times d-none"></i>
     </button>
-
     <!-- Phone view responsive menu -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
       <!-- Genres dropdown -->
@@ -48,12 +51,14 @@
           </a>
           <!-- Options -->
           <ul class="dropdown-menu dropdown-menu-end">
-            <!-- Option 1 -->
-            <li><a class="dropdown-item" href="lista-libros.php?genero=ciencia-ficcion">Ciencia ficción</a></li>
-            <!-- Option 2 -->
-            <li><a class="dropdown-item" href="lista-libros.php?genero=accion">Acción</a></li>
-            <!-- Option 3 -->
-            <li><a class="dropdown-item" href="lista-libros.php?genero=drama">Drama</a></li>
+            
+
+
+
+
+
+
+
           </ul>
         </li>
       </ul>
@@ -88,54 +93,56 @@
             <h1 class="fw-normal mb-4">Engadir novo libro</h1>
             <br>
             <!-- Form -->
-            <form>
+            <form method="post" action="">
+              <!-- ISBN -->
+              <div class="mb-4">
+                <!-- Label -->
+                <label for="isbn" class="form-label fw-normal" style="color: #8E8E93">ISBN</label>
+                <!-- Zona de contestación -->
+                <input type="text" class="form-control rounded-pill" id="isbn" name="isbn" placeholder="Introduce o ISBN" required>
+              </div>
               <!-- Title -->
               <div class="mb-4">
                 <!-- Label -->
                 <label for="titulo" class="form-label fw-normal" style="color: #8E8E93">Título</label>
                 <!-- Zona de contestación -->
-                <input type="text" class="form-control rounded-pill" id="titulo" placeholder="Introduce o título" required>
+                <input type="text" class="form-control rounded-pill" id="titulo" name="titulo" placeholder="Introduce o título" required>
               </div>
               <!-- Autor -->
               <div class="mb-4">
                 <!-- Label -->
                 <label for="autor" class="form-label fw-normal" style="color: #8E8E93">Autor</label>
                 <!-- Answer area -->
-                <input type="text" class="form-control rounded-pill" id="autor" placeholder="Introduce o autor" required>
+                <input type="text" class="form-control rounded-pill" id="autor" name="autor" placeholder="Introduce o autor" required>
               </div>
-              <!-- Genre -->
-              <div class="mb-4">
-                <!-- Label -->
-                <label for="xenero" class="form-label fw-normal" style="color: #8E8E93">Xénero</label>
-                <!-- Genre selection dropdown -->
-                <select id="xenero" class="form-select rounded-pill" required>
-                  <!-- Dropdown title -->
-                  <option value="" disabled selected>Selecciona un xénero</option>
-                  <!-- Option 1 -->
-                  <option value="horror">Horror</option>
-                  <!-- Option 2 -->
-                  <option value="ficcion">Ficción</option>
-                  <!-- Option 3 -->
-                  <option value="ciencia-ficcion">Ciencia ficción</option>
-                  <!-- Option 4 -->
-                  <option value="accion">Acción</option>
-                  <!-- Option 5 -->
-                  <option value="drama">Drama</option>
-                </select>
+
+              <div class="d-flex gap-3 align-items-end mb-5">
+                <!-- Genre -->
+                <div class="flex-fill">
+                  <label for="xenero" class="form-label fw-normal" style="color: #8E8E93">Xénero</label>
+                  <select id="xenero" class="form-select rounded-pill" name="xenero" required>
+                    <option value="" disabled selected>Selecciona un xénero</option>
+
+
+
+
+
+
+                  </select>
+                </div>
+                <!-- Stock -->
+                <div style="max-width: 140px;">
+                  <label for="stock" class="form-label fw-normal" style="color: #8E8E93">Stock</label>
+                  <input type="number" class="form-control rounded-pill" id="stock" name="stock" placeholder="Ex. 10" min="0" required>
+                </div>
               </div>
-              <!-- Stock -->
-              <div class="mb-5">
-                <!-- Label -->
-                <label for="stock" class="form-label fw-normal" style="color: #8E8E93">Stock</label>
-                <!-- Number selection -->
-                <input type="number" class="form-control rounded-pill" id="stock" placeholder="Ex. 10" min="0" required>
-              </div>
+
               <!-- Buttons -->
               <div class="form-actions mt-3">
                 <!-- Add -->
                 <button type="submit" class="btn btn-info text-white rounded-pill px-4">Engadir</button>
                 <!-- Cancel -->
-                <a href="lista-libros.php" class="btn btn-outline-info rounded-pill px-4 hover-outline" style="color: #32ADE6;" onclick="document.location='lista-libros.php'">Cancelar</a>
+                <a href="lista-libros.php" class="btn btn-outline-info rounded-pill px-4 hover-outline" style="color: #32ADE6;">Cancelar</a>
               </div>
             </form>
           </div>
@@ -144,20 +151,20 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-black text-white fixed-bottom py-3">
-    <div class="d-flex justify-content-between align-items-center" style="margin: 0 5%;">
-      <!-- Left text -->
-      <span>© 2025 Raquel G-L para IAW06</span>
-      <!-- Icons -->
-      <div class="d-flex gap-3">
-        <!-- Github icon -->
-        <a href="https://github.com/raquelg-l" class="text-white"><i class="fab fa-github"></i></a>
-        <!-- Mail icon -->
-        <a href="mailto:glez.erre@gmail.com" class="text-white"><i class="fas fa-envelope"></i></a>
-      </div>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="bg-black text-white fixed-bottom py-3">
+        <div class="d-flex justify-content-between align-items-center" style="margin: 0 5%;">
+            <!-- Texto esquerda -->
+            <span>© 2025 Raquel G-L para IAW06</span>
+            <!-- Iconas -->
+            <div class="d-flex gap-3">
+                <!-- GitHub -->
+                <a href="https://github.com/raquelg-l" class="text-white"><i class="fab fa-github"></i></a>
+                <!-- Mail -->
+                <a href="mailto:glez.erre@gmail.com" class="text-white"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
 
   <!-- Bootstrap 5 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

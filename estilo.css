@@ -103,6 +103,8 @@ body {
 /* ===== BOOKS TABLE ===== */
 .table th,
 .table td {
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
     border-right: 0;
     border-left: 0;
     border-top: 2px solid #E5E5EA;
@@ -165,11 +167,12 @@ body {
     max-width: 80%;
     height: auto;
     padding: 1rem;
+    margin-right: 2em;
 }
 
 /* Responsive image version */
 .illustration-adaptable {
-    max-width: 70%;
+    max-width: 80%;
     height: auto;
 }
 
@@ -240,6 +243,12 @@ footer {
 }
 
 /* Table-specific adaptations */
+@media (min-width: 751px) {
+    .table th, .table td {
+      width: 20% !important;
+    }
+  }
+  
 @media (max-width: 750px) {
     table.mobile-optimised thead {
         position: absolute;
@@ -287,11 +296,11 @@ footer {
 /* Tablet view */
 @media (max-width: 768px) {
     .illustration-phone {
-        max-width: 50%;
+        max-width: 40%;
     }
 
     .illustration-adaptable {
-        max-width: 50%;
+        max-width: 70%;
     }
 
     /* Accións do formulario */
