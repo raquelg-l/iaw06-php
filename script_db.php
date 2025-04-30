@@ -26,11 +26,11 @@
 
 <body class="bg-white">
     <?php
-    // Array para a checklist
+    // Array for the checklist
     $checklist = [];
 
-    // CONEXIÓN
-    // Variables da base de datos
+    // CONNECTION
+    // Database variables
     $host = "localhost";
     $user = "root";
     $pwd = "abc123.";
@@ -38,16 +38,16 @@
     $tablebooks = "libros";
     $tablegenre = "xenero";
 
-    // Compilación de erros
+    // Error compilation
     try {
-        // Conexión
+        // Connection
         $connection = mysqli_connect($host, $user, $pwd);
         if (!$connection) {
             throw new Exception("Conexión fallida: " . mysqli_connect_error());
         }
         $checklist[] = ["Conexión exitosa", true];
 
-        // Crear a base de datos só se non existe
+        // Create the database only if it does not exist
         $createdb = "CREATE DATABASE IF NOT EXISTS $db";
         if (mysqli_query($connection, $createdb)) {
             $checklist[] = ["Creouse a base de datos se non existía xa", true];
@@ -55,15 +55,15 @@
             $checklist[] = ["Erro ao crear a base de datos", false];
         }
 
-        // Seleccionar a base de datos creada
+        // Select the created database
         if (mysqli_select_db($connection, $db)) {
             $checklist[] = ["Seleccionouse a base de datos", true];
         } else {
             $checklist[] = ["Erro ao seleccionar a base de datos", false];
         }
 
-        // ESTRUTURA DAS TÁBOAS
-        // Eliminar táboas se existen
+        // TABLE STRUCTURE
+        // Drop tables if they exist
         $droptables1 = "DROP TABLE IF EXISTS $tablebooks";
         $droptables2 = "DROP TABLE IF EXISTS $tablegenre";
         $okDrop1 = mysqli_query($connection, $droptables1);
@@ -74,7 +74,7 @@
             $checklist[] = ["Erro ao eliminar as táboas existentes", false];
         }
 
-        // Crear a táboa XENERO
+        // Create the XENERO table
         $createtablegenre = "CREATE TABLE $tablegenre (
             id INT AUTO_INCREMENT PRIMARY KEY,
             nome VARCHAR(50) NOT NULL
@@ -85,7 +85,7 @@
             $checklist[] = ["Erro ao crear a táboa xenero", false];
         }
 
-        // Crear a táboa LIBROS
+        // Create the LIBROS table
         $createtablebooks = "CREATE TABLE $tablebooks (
             isbn VARCHAR(13) PRIMARY KEY,
             titulo VARCHAR(100) NOT NULL,
@@ -100,8 +100,8 @@
             $checklist[] = ["Erro ao crear a táboa libros", false];
         }
 
-        // INSERCIÓN DE DATOS
-        // Inserción de datos na táboa XENERO
+        // DATA INSERTION
+        // Insert data into the XENERO table
         $insertGenre = "INSERT INTO $tablegenre (nome)
                         VALUES ('Horror'), ('Ficción'), ('Ciencia Ficción'), ('Acción'), ('Drama')";
         if (mysqli_query($connection, $insertGenre)) {
@@ -110,57 +110,57 @@
             $checklist[] = ["Erro ao inserir datos en xenero", false];
         }
 
-        // Inserción de datos na táboa LIBROS
-        $insertBooks = "INSERT INTO $tablebooks (isbn, titulo, autor, xenero_id, stock)
+        // Insert data into the LIBROS table
+        $insertbooks = "INSERT INTO $tablebooks (isbn, titulo, autor, xenero_id, stock)
                         VALUES 
                         ('9781421590561', 'Tomie', 'Junji Ito', 1, 15), 
                         ('9786073135498', 'La hija del clérigo', 'George Orwell', 2, 30)";
-        if (mysqli_query($connection, $insertBooks)) {
+        if (mysqli_query($connection, $insertbooks)) {
             $checklist[] = ["Inseríronse os datos na táboa libros", true];
         } else {
             $checklist[] = ["Erro ao inserir datos en libros", false];
         }
 
-        // COMPROBACIÓN DE QUE SE EXECUTOU CORRECTAMENTE
-        $allOk = true;
+        // CHECK THAT EVERYTHING WORKED NICELY
+        $allworked = true;
         foreach ($checklist as $item) {
-            if (!$item[1]) $allOk = false;
+            if (!$item[1]) $allworked = false;
         }
-        if ($allOk) {
+        if ($allworked) {
             $checklist[] = ["Base de datos e táboas creadas correctamente", true];
         } else {
             $checklist[] = ["Houbo erros na execución dalgún paso", false];
         }
 
-        // PECHE DE CONEXIÓN
+        // CLOSE CONNECTION
         mysqli_close($connection);
     } catch (Exception $e) {
         $checklist[] = ["Erro na conexión: " . $e->getMessage(), false];
     }
     ?>
 
-    <!-- Checklist visual -->
+    <!-- Visual checklist -->
     <div class="container my-5" style="max-width: 70%;">
-        <!-- Título -->
+        <!-- Title -->
         <h1 class="fw-normal" style="font-family:'Switzer',sans-serif; font-size: 2.5rem; margin-left: 1%; margin-bottom: 2rem;">
             Comprobacións de execución
         </h1>
 
-        <!-- Táboa -->
+        <!-- Table -->
         <div class="table-responsive">
-            <table class="table table-bordered text-start align-middle mobile-optimised" style="width: 98%; margin-left: 1%; mb-2">
+            <table class="table table-bordered text-start align-middle mobile-optimised" style="width: 98%; margin-left: 1%; margin-bottom: 1.5rem;">
                 <tbody>
                     <?php
-                    // Recorrer o array CHECKLIST
+                    // Loop through the CHECKLIST array
                     foreach ($checklist as $item) {
-                        // Por cada item do array crea unha fila
+                        // Create a row for each item in the array
                         echo '<tr>';
-                        // Se a comprobación foi ben mostra isto
+                        // If the check was successful, show this
                         if ($item[1]) {
                             echo '<td style="font-family:\'Switzer\',sans-serif; vertical-align: middle;">
                             <i class="fas fa-check-circle text-success" style="font-size:1.3rem; margin-right: 28px;"></i>' . $item[0] . '
                           </td>';
-                            // Se a comprobación falla mostra isto
+                            // If the check failed, show this other thing
                         } else {
                             echo '<td style="font-family:\'Switzer\',sans-serif; vertical-align: middle;">
                             <i class="fas fa-times-circle text-danger" style="font-size:1.3rem; margin-right: 28px;"></i>' . $item[0] . '
@@ -173,21 +173,6 @@
             </table>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-black text-white fixed-bottom py-3">
-        <div class="d-flex justify-content-between align-items-center" style="margin: 0 5%;">
-            <!-- Texto esquerda -->
-            <span>© 2025 Raquel G-L para IAW06</span>
-            <!-- Iconas -->
-            <div class="d-flex gap-3">
-                <!-- GitHub -->
-                <a href="https://github.com/raquelg-l" class="text-white"><i class="fab fa-github"></i></a>
-                <!-- Mail -->
-                <a href="mailto:glez.erre@gmail.com" class="text-white"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -5,8 +5,8 @@
 -->
 
 <?php
-// CONEXIÓN
-// Variables da base de datos
+// CONNECTION
+// Database variables
 $host = "localhost";
 $user = "root";
 $pwd = "abc123.";
@@ -14,17 +14,23 @@ $db = "raquel_gonzalez_bd";
 $tablebooks = "libros";
 $tablegenre = "xenero";
 
-// Compilación de erros
+// Error handling
 try {
-    // Conexión
+    // Connection
     $connection = mysqli_connect($host, $user, $pwd, $db);
 
-    // Función para a sentenza 
-    $select = "SELECT nome FROM $tablegenre";
-    // Execución da sentenza
-    $result = mysqli_query($connection, $select);
+    // Query for the navbar statement
+    $select = "SELECT nome FROM $tablegenre";    
+    // Execute the query for the navbar
+    $resultnavbar = mysqli_query($connection, $select);
 
-    // PECHE DE CONEXIÓN
+    // Query for the table statement
+    $select = "SELECT * FROM $tablebooks
+               JOIN $tablegenre ON $tablegenre.id = $tablebooks.xenero_id";
+    // Execute the query for the table
+    $resultable = mysqli_query($connection, $select);
+
+    // CLOSE CONNECTION
     mysqli_close($connection);
 } catch (Exception $e) {
     echo "Erro na conexión: " . $e->getMessage();
@@ -77,7 +83,7 @@ try {
                     <ul class="dropdown-menu dropdown-menu-end">
                         <?php
                          // For loop where that goes through the array that contains the result of the query defined
-                        for ($i = 0; $row = mysqli_fetch_array($result, MYSQLI_ASSOC); $i++) {
+                        for ($i = 0; $row = mysqli_fetch_array($resultnavbar, MYSQLI_ASSOC); $i++) {
                             // Returns the nome field of all the records in the xenero table following the style of the page
                             echo '<li><a class="dropdown-item" href="lista-libros.php">' . $row['nome'] . '</a></li>';
                         }
@@ -125,14 +131,24 @@ try {
             </thead>
             <!-- Table body -->
             <tbody>
-
-
-
-
-
-
-
-
+            <?php
+            // Loop through each row in the result set from the table query
+            while ($row = mysqli_fetch_array($resultable, MYSQLI_ASSOC)){
+                echo "<tr>";
+                    // Display the ISBN in its table cell
+                    echo '<td data-th="ISBN">' . $row['isbn'] . '</td>';
+                    // Display the title in its table cell
+                    echo '<td data-th="Título">' . $row['titulo'] . '</td>';
+                    // Display the author in its table cell
+                    echo '<td data-th="Autor">' . $row['autor'] . '</td>';
+                    // Display the genre name in its table cell
+                    echo '<td data-th="Xénero">' . $row['nome'] . '</td>';
+                    // Display the stock in its table cell
+                    echo '<td data-th="Stock">' . $row['stock'] . '</td>';
+                // End the table row
+                echo "</tr>";
+            }
+            ?>
             </tbody>
         </table>
     </div>

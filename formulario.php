@@ -16,18 +16,21 @@ $tablegenre = "xenero";
 
 // Compilación de erros
 try {
-    // Conexión
-    $connection = mysqli_connect($host, $user, $pwd, $db);
+  // Conexión
+  $connection = mysqli_connect($host, $user, $pwd, $db);
 
-    // Función para a sentenza 
-    $select = "SELECT nome FROM $tablegenre";
-    // Execución da sentenza
-    $result = mysqli_query($connection, $select);
+  // Función para a sentenza 
+  $select = "SELECT nome FROM $tablegenre";
+  // Execución da sentenza para a navbar
+  $resultnavbar = mysqli_query($connection, $select);
+  // Execución da sentenza para o form
+  $resultform = mysqli_query($connection, $select);
 
-    // PECHE DE CONEXIÓN
-    mysqli_close($connection);
+  // Peche de conexión
+  mysqli_close($connection);
+
 } catch (Exception $e) {
-    echo "Erro na conexión: " . $e->getMessage();
+  echo "Erro na conexión: " . $e->getMessage();
 }
 ?>
 
@@ -77,7 +80,7 @@ try {
           <ul class="dropdown-menu dropdown-menu-end">
             <?php
             // For loop where that goes through the array that contains the result of the query defined
-            for ($i = 0; $row = mysqli_fetch_array($result, MYSQLI_ASSOC); $i++) {
+            for ($i = 0; $row = mysqli_fetch_array($resultnavbar, MYSQLI_ASSOC); $i++) {
               // Returns the nome field of all the records in the xenero table following the style of the page
               echo '<li><a class="dropdown-item" href="lista-libros.php">' . $row['nome'] . '</a></li>';
             }
@@ -140,17 +143,20 @@ try {
               </div>
 
               <div class="d-flex gap-3 align-items-end mb-5">
-                <!-- Genre -->
+                <!-- Genre selection dropdown -->
                 <div class="flex-fill">
+                  <!-- Dropdown label -->
                   <label for="xenero" class="form-label fw-normal" style="color: #8E8E93">Xénero</label>
+                  <!-- Genre selection dropdown -->
                   <select id="xenero" class="form-select rounded-pill" name="xenero" required>
+                    <!-- Dropdown title -->
                     <option value="" disabled selected>Selecciona un xénero</option>
-
-
-
-
-
-
+                    <?php
+                    // While loop that goes through the array that contains the result of the query defined
+                    while ($row = mysqli_fetch_assoc($resultform)){
+                            echo '<option value="' . $row['nome'] . '">' . $row['nome'] . '</option>';
+                    }                    
+                    ?>
                   </select>
                 </div>
                 <!-- Stock -->
