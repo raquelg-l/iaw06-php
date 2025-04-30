@@ -19,12 +19,12 @@ try {
     // Connection
     $connection = mysqli_connect($host, $user, $pwd, $db);
 
-    // Query for the navbar statement
-    $select = "SELECT nome FROM $tablegenre";    
+    // Query to retrieve nome from xenero
+    $select = "SELECT nome FROM $tablegenre";
     // Execute the query for the navbar
     $resultnavbar = mysqli_query($connection, $select);
 
-    // Query for the table statement
+    // Query to retrieve all fields from libros and nome from xenero
     $select = "SELECT * FROM $tablebooks
                JOIN $tablegenre ON $tablegenre.id = $tablebooks.xenero_id";
     // Execute the query for the table
@@ -82,7 +82,7 @@ try {
                     <!-- Options -->
                     <ul class="dropdown-menu dropdown-menu-end">
                         <?php
-                         // For loop where that goes through the array that contains the result of the query defined
+                        // For loop where that goes through the array that contains the result of the query defined
                         for ($i = 0; $row = mysqli_fetch_array($resultnavbar, MYSQLI_ASSOC); $i++) {
                             // Returns the nome field of all the records in the xenero table following the style of the page
                             echo '<li><a class="dropdown-item" href="lista-libros.php">' . $row['nome'] . '</a></li>';
@@ -131,10 +131,10 @@ try {
             </thead>
             <!-- Table body -->
             <tbody>
-            <?php
-            // Loop through each row in the result set from the table query
-            while ($row = mysqli_fetch_array($resultable, MYSQLI_ASSOC)){
-                echo "<tr>";
+                <?php
+                // Loop through each row in the result set from the table query
+                while ($row = mysqli_fetch_array($resultable, MYSQLI_ASSOC)) {
+                    echo "<tr>";
                     // Display the ISBN in its table cell
                     echo '<td data-th="ISBN">' . $row['isbn'] . '</td>';
                     // Display the title in its table cell
@@ -145,10 +145,10 @@ try {
                     echo '<td data-th="Xénero">' . $row['nome'] . '</td>';
                     // Display the stock in its table cell
                     echo '<td data-th="Stock">' . $row['stock'] . '</td>';
-                // End the table row
-                echo "</tr>";
-            }
-            ?>
+                    // End the table row
+                    echo "</tr>";
+                }
+                ?>
             </tbody>
         </table>
     </div>
