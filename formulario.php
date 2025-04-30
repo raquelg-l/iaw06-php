@@ -4,6 +4,33 @@
 ╰──────────────────╯
 -->
 
+<?php
+// CONEXIÓN
+// Variables da base de datos
+$host = "localhost";
+$user = "root";
+$pwd = "abc123.";
+$db = "raquel_gonzalez_bd";
+$tablebooks = "libros";
+$tablegenre = "xenero";
+
+// Compilación de erros
+try {
+    // Conexión
+    $connection = mysqli_connect($host, $user, $pwd, $db);
+
+    // Función para a sentenza 
+    $select = "SELECT nome FROM $tablegenre";
+    // Execución da sentenza
+    $result = mysqli_query($connection, $select);
+
+    // PECHE DE CONEXIÓN
+    mysqli_close($connection);
+} catch (Exception $e) {
+    echo "Erro na conexión: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="gl">
 
@@ -36,7 +63,7 @@
       <i class="fas fa-bars"></i>
       <i class="fas fa-times d-none"></i>
     </button>
-    
+
     <!-- Phone view responsive menu -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
       <!-- Genres dropdown -->
@@ -48,14 +75,13 @@
           </a>
           <!-- Options -->
           <ul class="dropdown-menu dropdown-menu-end">
-
-
-
-
-
-
-
-
+            <?php
+            // For loop where that goes through the array that contains the result of the query defined
+            for ($i = 0; $row = mysqli_fetch_array($result, MYSQLI_ASSOC); $i++) {
+              // Returns the nome field of all the records in the xenero table following the style of the page
+              echo '<li><a class="dropdown-item" href="lista-libros.php">' . $row['nome'] . '</a></li>';
+            }
+            ?>
           </ul>
         </li>
       </ul>

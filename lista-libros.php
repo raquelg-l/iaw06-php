@@ -4,6 +4,33 @@
 ╰──────────────────╯
 -->
 
+<?php
+// CONEXIÓN
+// Variables da base de datos
+$host = "localhost";
+$user = "root";
+$pwd = "abc123.";
+$db = "raquel_gonzalez_bd";
+$tablebooks = "libros";
+$tablegenre = "xenero";
+
+// Compilación de erros
+try {
+    // Conexión
+    $connection = mysqli_connect($host, $user, $pwd, $db);
+
+    // Función para a sentenza 
+    $select = "SELECT nome FROM $tablegenre";
+    // Execución da sentenza
+    $result = mysqli_query($connection, $select);
+
+    // PECHE DE CONEXIÓN
+    mysqli_close($connection);
+} catch (Exception $e) {
+    echo "Erro na conexión: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="gl">
 
@@ -48,12 +75,13 @@
                     </a>
                     <!-- Options -->
                     <ul class="dropdown-menu dropdown-menu-end">
-
-
-
-
-
-
+                        <?php
+                         // For loop where that goes through the array that contains the result of the query defined
+                        for ($i = 0; $row = mysqli_fetch_array($result, MYSQLI_ASSOC); $i++) {
+                            // Returns the nome field of all the records in the xenero table following the style of the page
+                            echo '<li><a class="dropdown-item" href="lista-libros.php">' . $row['nome'] . '</a></li>';
+                        }
+                        ?>
                     </ul>
                 </li>
             </ul>
@@ -61,7 +89,7 @@
             <form class="d-flex position-relative my-2 my-md-0">
                 <!-- Search form -->
                 <input class="form-control border-0 rounded-pill ps-4 pe-5 search-desktop-md" type="search" placeholder="Título, autor, xénero..." aria-label="Buscar" />
-                !-- Magnifying glass icon -->
+                <!-- Magnifying glass icon -->
                 <span class="position-absolute end-0 top-50 translate-middle-y me-3 text-black">
                     <i class="fas fa-search"></i>
                 </span>
@@ -131,7 +159,7 @@
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!--Hamburger to X toggle in phone view -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
