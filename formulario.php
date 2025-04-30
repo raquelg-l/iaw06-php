@@ -22,29 +22,34 @@ try {
 
     // Process the form only if it was submitted via POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Escape and collect form data
+        // Rename the form items to something more manageable (also avoid potential SQL injections)
         $isbn = mysqli_real_escape_string($connection, $_POST['isbn']);
-        $titulo = mysqli_real_escape_string($connection, $_POST['titulo']);
-        $autor = mysqli_real_escape_string($connection, $_POST['autor']);
-        $nome_xenero = mysqli_real_escape_string($connection, $_POST['xenero']);
+        $title = mysqli_real_escape_string($connection, $_POST['titulo']);
+        $author = mysqli_real_escape_string($connection, $_POST['autor']);
+        $genre_name = mysqli_real_escape_string($connection, $_POST['xenero']);
         $stock = intval($_POST['stock']);
 
-        // Query to get the genre id from its name
-        $sql_genre = "SELECT id FROM $tablegenre WHERE nome = '$nome_xenero'";
+        // Get the genre id from its name in xenero table
+        $sql_genre = "SELECT id FROM $tablegenre WHERE nome = '$genre_name'";
         $result_genre = mysqli_query($connection, $sql_genre);
 
+        // If there's at least 1 result
         if ($result_genre && mysqli_num_rows($result_genre) > 0) {
+            // Obtain id
             $row_genre = mysqli_fetch_assoc($result_genre);
             $genre_id = $row_genre['id'];
 
             // Insert the new book into the database
             $sql_insert = "INSERT INTO $tablebooks (isbn, titulo, autor, xenero_id, stock)
-                           VALUES ('$isbn', '$titulo', '$autor', $genre_id, $stock)";
+                           VALUES ('$isbn', '$title', '$author', $genre_id, $stock)";
+            // If successful
             if (mysqli_query($connection, $sql_insert)) {
-                // Redirect to the books list if successful
+                // Redirect to the books list page
                 header("Location: lista-libros.php?insert=ok");
                 exit();
+                // If it went wrong
             } else {
+                // Show this
                 $msg = "Error adding the book. The ISBN might already exist or there was another error.";
             }
         } else {
@@ -52,13 +57,16 @@ try {
         }
     }
 
-    // Query to get genres for the navbar and the form
+    // Query to retrieve nome from xenero
     $select = "SELECT nome FROM $tablegenre";
+    // Execute the query for the navbar
     $resultnavbar = mysqli_query($connection, $select);
+    // Execute the query for the form
     $resultform = mysqli_query($connection, $select);
 
-    // Do not close the connection yet if you use the results below
-
+    // CLOSE CONNECTION
+    mysqli_close($connection);
+    
 } catch (Exception $e) {
     $msg = "Connection error: " . $e->getMessage();
 }
