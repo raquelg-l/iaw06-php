@@ -5,6 +5,9 @@
 -->
 
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 // CONNECTION
 // Database variables
 $host = "localhost";
@@ -18,6 +21,27 @@ $tablegenre = "xenero";
 try {
     // Connection
     $connection = mysqli_connect($host, $user, $pwd, $db);
+
+    // If there's an ISBN present in the url
+    if (isset($_GET['isbn'])) {
+        // Store the ISBN value in this variable
+        $isbn_delete = $_GET['isbn'];
+
+        // Deletion query
+        $delete_book = "DELETE FROM $tablebooks WHERE isbn = '$isbn_delete'";
+
+        // If the deletion query is executed
+        if (mysqli_query($connection, $delete_book)) {
+            // Redirect the user to the regular index page
+            header("Location: lista-libros.php");
+            // Stop the script
+            exit();
+        // If the deletion query is not executed
+        } else {
+            // Show this
+            echo "Error ao eliminar o libro: " . mysqli_error($connection);
+        }
+    }
 
     // Query to retrieve nome from xenero
     $select = "SELECT nome FROM $tablegenre";
@@ -47,7 +71,7 @@ try {
     <!-- Page title -->
     <title>Libros & co.</title>
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <!-- Custom CSS -->
@@ -145,6 +169,21 @@ try {
                     echo '<td data-th="Xénero">' . $row['nome'] . '</td>';
                     // Display the stock in its table cell
                     echo '<td data-th="Stock">' . $row['stock'] . '</td>';
+                    // Kebab menu
+                    echo '<td class="td-end">
+                        <div class="dropdown">
+                            <button class="btn btn-kebab" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <ul class="dropdown-menu kebab-dropdown" aria-labelledby="dropdownMenuButton">
+
+                                <li><a class="dropdown-item" href="formulario.php?isbn=' . $row['isbn'] . '">Actualizar</a></li>
+
+                                <li><a class="dropdown-item text-danger" href="lista-libros.php?isbn=' . $row['isbn'] . '">Eliminar</a></li>
+
+                            </ul>
+                        </div>
+                        </td>';
                     // End the table row
                     echo "</tr>";
                 }

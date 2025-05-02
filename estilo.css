@@ -96,7 +96,7 @@ body {
 }
 
 .btn-outline-info:hover {
-    border: 1px solid #32ADE6;
+    border: 2px solid #32ADE6;
     background-color: transparent;
 }
 
@@ -117,6 +117,31 @@ body {
     font-weight: normal;
     background-color: white;
 }
+
+/* Kebab button */
+.btn-kebab {
+    background-color: transparent;
+    border: none;
+    color: black;
+}
+
+/* Hover effect */
+.btn-kebab:hover {
+    color: #2699cb;
+}
+
+/* Dropdown menu styles */
+.dropdown-menu {
+    background-color: #fff;
+    border: 1px solid #E5E5EA;
+}
+
+.dropdown-item:focus,
+.dropdown-item:active {
+    background-color: #32ADE6 !important;
+    color: white !important;
+}
+
 
 /* ===== MAIN PAGE BOOK ILLUSTRATION ===== */
 .book-illustration-container {
@@ -203,7 +228,7 @@ footer {
 
     .navbar-nav .dropdown-item:hover {
         border-radius: 10px;
-      }
+    }
 
     .navbar-collapse.show .dropdown-menu {
         display: block !important;
@@ -244,11 +269,13 @@ footer {
 
 /* Table-specific adaptations */
 @media (min-width: 751px) {
-    .table th, .table td {
-      width: 20% !important;
+
+    .table th,
+    .table td {
+        width: 20% !important;
     }
-  }
-  
+}
+
 @media (max-width: 750px) {
     table.mobile-optimised thead {
         position: absolute;
@@ -263,7 +290,7 @@ footer {
     table.mobile-optimised td {
         display: block;
         width: 100%;
-        border-radius: 0px !important;
+        border-radius: 0x !important;
         border-color: white;
     }
 
@@ -278,8 +305,13 @@ footer {
         padding-left: 40%;
         position: relative;
         background: none;
-        border-bottom: 1px;
     }
+
+    .td-end {
+        padding-left: 1em !important;
+        text-align: center !important;
+    }
+
 
     table.mobile-optimised td:before {
         content: attr(data-th);
@@ -312,4 +344,64 @@ footer {
     .form-actions .btn {
         width: 100%;
     }
+}
+
+/* Kebab menu on smaller screens */
+@media (max-width: 750px) {
+    .td-end {
+        padding: none;
+    }
+
+    .btn-kebab {
+        display: none !important;
+        /* Hide the kebab button */
+    }
+
+    .kebab-dropdown {
+        display: flex;
+        flex-direction: row;
+        /* Align items horizontally */
+        justify-content: center;
+        width: 100%;
+        /* Occupy full width of the td */
+    }
+
+    .dropdown-menu {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        /* Change to row for horizontal alignment */
+        align-items: center;
+        /* Center items vertically */
+        background-color: #F2F2F7;
+        /* Background color */
+        border: none;
+        padding: 0;
+        margin: 0;
+        width: auto;
+        /* Adjust width to fit content */
+        gap: 20px !important;
+    }
+
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+        /* Adjust padding */
+        border-radius: 10px;
+        margin-right: 0.5rem;
+        /* Space between items */
+        width: auto;
+        /* Adjust width to fit content */
+    }
+
+    .dropdown-item:hover {
+        cursor: pointer;
+        background-color: #F2F2F7;
+    }
+
+    .dropdown-item:focus,
+    .dropdown-item:active {
+        background-color: #32ADE6 !important;
+        color: white !important;
+    }
+
 }
