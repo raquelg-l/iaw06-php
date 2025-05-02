@@ -32,8 +32,8 @@ try {
 
         // If the deletion query is executed
         if (mysqli_query($connection, $delete_book)) {
-            // Redirect the user to the regular index page
-            header("Location: lista-libros.php");
+            // Redirect the user to the regular index page with a confirmation
+            header("Location: lista-libros.php?deletion=ok");
             // Stop the script
             exit();
         // If the deletion query is not executed
@@ -85,6 +85,7 @@ try {
     <nav class="navbar navbar-expand-md navbar-dark bg-black rounded-pill px-3 py-2 my-3">
         <!-- Logo -->
         <a class="navbar-brand ms-3" href="lista-libros.php">
+            <!-- Logo image -->
             <img src="ASSETS/logo.svg" alt="Logo" width="150" />
         </a>
 
@@ -172,13 +173,18 @@ try {
                     // Kebab menu
                     echo '<td class="td-end">
                         <div class="dropdown">
+                            <!-- Button that triggers the dropdown menu -->
                             <button class="btn btn-kebab" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <!-- Kebab icon -->
                                 <i class="fas fa-ellipsis-v"></i>
                             </button>
-                            <ul class="dropdown-menu kebab-dropdown" aria-labelledby="dropdownMenuButton">
 
+                            <!-- Dropdown with the actions -->
+                            <ul class="dropdown-menu kebab-dropdown" aria-labelledby="dropdownMenuButton">
+                                <!-- Option to update the book (passes ISBN in the URL) -->
                                 <li><a class="dropdown-item" href="formulario.php?isbn=' . $row['isbn'] . '">Actualizar</a></li>
 
+                                <!-- Option to delete the book (passes ISBN in the URL) -->
                                 <li><a class="dropdown-item text-danger" href="lista-libros.php?isbn=' . $row['isbn'] . '">Eliminar</a></li>
 
                             </ul>
@@ -192,17 +198,18 @@ try {
         </table>
     </div>
 
-    <!-- Bottom book illustration -->
+    <!-- Bottom book illustration container -->
     <div class="book-illustration-container my-4">
+        <!-- Book illustration -->
         <img src="ASSETS/libro.png" alt="Libro" class="img-fluid book-illustration" />
     </div>
 
     <!-- Footer -->
     <footer class="bg-black text-white fixed-bottom py-3">
         <div class="d-flex justify-content-between align-items-center" style="margin: 0 5%;">
-            <!-- Texto esquerda -->
+            <!-- Left text -->
             <span>© 2025 Raquel G-L para IAW06</span>
-            <!-- Iconas -->
+            <!-- Icons on the right -->
             <div class="d-flex gap-3">
                 <!-- GitHub -->
                 <a href="https://github.com/raquelg-l" class="text-white"><i class="fab fa-github"></i></a>
