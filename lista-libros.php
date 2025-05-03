@@ -5,32 +5,7 @@
 -->
 
 <?php
-include_once ('PHP/conexion_bd.php');
-// include ('PHP/navbar.php');
-include_once ('PHP/funcions-crud.php');
-
-// Run the code inside
-try {
-    // If there's an ISBN present in the url
-    if (isset($_GET['isbn'])) {
-        // Store the ISBN value in this variable
-        $isbn_delete = $_GET['isbn'];
-
-        // Deletion function
-        $delete_book = deletebook($isbn_delete);
-    }
-
-    // Obtain genres for the navbar function
-    $resultnavbar = getgenrenames();
-
-    // Obtain books for the table function
-    $resultable = getallbooks();
-
-// Catch anything that failed in the try block
-} catch (Exception $e) {
-    // Show what failed
-    return "Erro na conexión: " . $e->getMessage();
-}
+require_once 'PHP/controlador_taboa.php';
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +25,8 @@ try {
     <link rel="stylesheet" href="css/estilo.css" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="ASSETS/icon.svg">
+    <!-- Switzer font -->
+    <link href="https://fonts.cdnfonts.com/css/switzer" rel="stylesheet">
 </head>
 
 <body class="bg-white">
@@ -59,7 +36,7 @@ try {
     <!-- Title and new book button -->
     <div class="d-flex align-items-center justify-content-between mt-4 mb-3">
         <!-- Title -->
-        <h1 class="fw-normal" style="font-family:'Switzer',sans-serif;font-size:2.5rem;">Lista de libros</h1>
+        <h1 class="fw-normal">Lista de libros</h1>
         <!-- New book button -->
         <button class="btn btn-info text-white rounded-pill d-flex align-items-center px-4 py-2" onclick="document.location='formulario.php'">
             <!-- + icon -->
@@ -83,46 +60,9 @@ try {
                 </tr>
             </thead>
             <!-- Table body -->
-            <tbody>
-                <?php
-                // Loop through each row in the result set from the table query
-                while ($row = mysqli_fetch_array($resultable, MYSQLI_ASSOC)) {
-                    echo "<tr>";
-                    // Display the ISBN in its table cell
-                    echo '<td data-th="ISBN">' . $row['isbn'] . '</td>';
-                    // Display the title in its table cell
-                    echo '<td data-th="Título">' . $row['titulo'] . '</td>';
-                    // Display the author in its table cell
-                    echo '<td data-th="Autor">' . $row['autor'] . '</td>';
-                    // Display the genre name in its table cell
-                    echo '<td data-th="Xénero">' . $row['nome'] . '</td>';
-                    // Display the stock in its table cell
-                    echo '<td data-th="Stock">' . $row['stock'] . '</td>';
-                    // Kebab menu
-                    echo '<td class="td-end">
-                        <div class="dropdown">
-                            <!-- Button that triggers the dropdown menu -->
-                            <button class="btn btn-kebab" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                <!-- Kebab icon -->
-                                <i class="fas fa-ellipsis-v"></i>
-                            </button>
-
-                            <!-- Dropdown with the actions -->
-                            <ul class="dropdown-menu kebab-dropdown" aria-labelledby="dropdownMenuButton">
-                                <!-- Option to update the book (passes ISBN in the URL) -->
-                                <li><a class="dropdown-item" href="formulario.php?isbn=' . $row['isbn'] . '">Actualizar</a></li>
-
-                                <!-- Option to delete the book (passes ISBN in the URL) -->
-                                <li><a class="dropdown-item text-danger" href="lista-libros.php?isbn=' . $row['isbn'] . '">Eliminar</a></li>
-
-                            </ul>
-                        </div>
-                        </td>';
-                    // End the table row
-                    echo "</tr>";
-                }
-                ?>
-            </tbody>
+            <?php
+            require_once 'PHP/corpo_taboa.php';
+            ?>
         </table>
     </div>
 

@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="CSS/estilo.css" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="ASSETS/icon.svg">
+    <!-- Switzer font -->
+    <link href="https://fonts.cdnfonts.com/css/switzer" rel="stylesheet">
 </head>
 
 
@@ -142,13 +144,13 @@
     <!-- Visual checklist -->
     <div class="container my-5" style="max-width: 70%;">
         <!-- Title -->
-        <h1 class="fw-normal" style="font-family:'Switzer',sans-serif; font-size: 2.5rem; margin-left: 1%; margin-bottom: 2rem;">
+        <h1 class="fw-normal mb-4">
             Comprobacións de execución
         </h1>
 
         <!-- Table -->
         <div class="table-responsive">
-            <table class="table table-bordered text-start align-middle mobile-optimised" style="width: 98%; margin-left: 1%; margin-bottom: 1.5rem;">
+            <table class="table table-bordered text-start align-middle mobile-optimised w-100 mx-auto mb-4">
                 <tbody>
                     <?php
                     // Loop through the CHECKLIST array
@@ -157,13 +159,13 @@
                         echo '<tr>';
                         // If the check was successful, show this
                         if ($item[1]) {
-                            echo '<td style="font-family:\'Switzer\',sans-serif; vertical-align: middle;">
-                            <i class="fas fa-check-circle text-success" style="font-size:1.3rem; margin-right: 28px;"></i>' . $item[0] . '
-                          </td>';
+                            echo '<td>
+                            <i class="fas fa-check-circle text-success check-icon"></i>' . $item[0] . '
+                            </td>';
                             // If the check failed, show this other thing
                         } else {
-                            echo '<td style="font-family:\'Switzer\',sans-serif; vertical-align: middle;">
-                            <i class="fas fa-times-circle text-danger" style="font-size:1.3rem; margin-right: 28px;"></i>' . $item[0] . '
+                            echo '<td>
+                            <i class="fas fa-times-circle text-danger check-icon"></i>' . $item[0] . '
                           </td>';
                         }
                         echo '</tr>';

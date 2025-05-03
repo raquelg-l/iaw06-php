@@ -1,13 +1,7 @@
-<!--                        
-╭──────────────────╮
-│ FEITO POR RAQUEL │
-╰──────────────────╯
--->
-
 <!-- Navigation bar -->
 <nav class="navbar navbar-expand-md navbar-dark bg-black rounded-pill px-3 py-2 my-3">
     <!-- Logo -->
-    <a class="navbar-brand ms-3" href="lista-libros.php">
+    <a class="navbar-brand ms-2" href="lista-libros.php">
         <!-- Logo image -->
         <img src="ASSETS/logo.svg" alt="Logo" width="150" />
     </a>

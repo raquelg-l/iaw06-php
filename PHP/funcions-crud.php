@@ -1,17 +1,12 @@
-<!--                        
-╭──────────────────╮
-│ FEITO POR RAQUEL │
-╰──────────────────╯
--->
-
 <?php
 // Reference to the php file that has the connection function
 include_once('PHP/conexion_bd.php');
 
+
+
 ////////////////////////////// CREATE //////////////////////////////
 // This function ads a book to the database
-function addbook($isbn, $title, $author, $genre_id, $stock)
-{
+function addbook($isbn, $title, $author, $genre_id, $stock) {
     // Call to the function to connect to the database
     $connection = connect_to_db();
 
@@ -36,10 +31,11 @@ function addbook($isbn, $title, $author, $genre_id, $stock)
     close_connection($connection);
 }
 
+
+
 ////////////////////////////// READ //////////////////////////////
 // This function gets all the books in the database
-function getallbooks()
-{
+function getallbooks() {
     // Call to the function to connect to the database
     $connection = connect_to_db();
 
@@ -60,6 +56,7 @@ function getallbooks()
     // Returns the result of the query to use it elsewhere
     return $resultallbooks;
 }
+
 
 // This function gets a specific book in the database
 function getbook() {
@@ -88,9 +85,9 @@ function getbook() {
     return $resulbook;
 }
 
+
 // This function gets all the genre names in the database
-function getgenrenames()
-{
+function getgenrenames() {
     // Call to the function to connect to the database
     $connection = connect_to_db();
 
@@ -109,9 +106,9 @@ function getgenrenames()
     return $resultgenrename;
 }
 
+
 // This function gets the genre id of a book in the database
-function getgenreid($genre_name)
-{
+function getgenreid($genre_name) {
     // Call to the function to connect to the database
     $connection = connect_to_db();
 
@@ -130,10 +127,11 @@ function getgenreid($genre_name)
     return $resultid;
 }
 
+
+
 ////////////////////////////// UPDATE //////////////////////////////
 // This function updates a book
-function updatebook($isbn, $title, $author, $genre_id, $stock)
-{
+function updatebook($isbn, $title, $author, $genre_id, $stock, $original_isbn) {
     // Call to the function to connect to the database
     $connection = connect_to_db();
 
@@ -142,25 +140,27 @@ function updatebook($isbn, $title, $author, $genre_id, $stock)
 
     // Query to update book
     $updatebook = "UPDATE $tablebooks 
-                   SET titulo='$title', autor='$author', xenero_id=$genre_id, stock=$stock
-                   WHERE isbn='$isbn'";
+                   SET isbn='$isbn', titulo='$title', autor='$author', xenero_id=$genre_id, stock=$stock
+                   WHERE isbn='$original_isbn'";
     // If the update takes place
     if (mysqli_query($connection, $updatebook)) {
         // Redirect to the main page with a confirmation
         header("Location: lista-libros.php?update=ok");
         // Stop the script
         exit();
-        // If the deletion query is not executed
+    // If the deletion query is not executed
     } else {
         // Show this
         return "Error actualizando o libro.";
     }
+    // Call the function to close connection
+     close_connection($connection);
 }
+
 
 ////////////////////////////// DELETE //////////////////////////////
 // This function deletes a book
-function deletebook($isbn)
-{
+function deletebook($isbn) {
     // Call to the function to connect to the database
     $connection = connect_to_db();
 
@@ -180,5 +180,4 @@ function deletebook($isbn)
         return "Error al eliminar el libro: " . mysqli_error($connection);
     }
 }
-
 ?>

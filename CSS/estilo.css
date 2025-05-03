@@ -1,10 +1,5 @@
-/*                      
-╭──────────────────╮
-│ FEITO POR RAQUEL │
-╰──────────────────╯
-*/
-
-/* ===== BASE STYLES ===== */
+/* ////////////////////////////// BASE STYLES ////////////////////////////// */
+/* Set the main font, page margins, background color, and bottom padding for the body */
 body {
     font-family: 'Switzer', sans-serif;
     margin-left: 5%;
@@ -13,13 +8,26 @@ body {
     padding-bottom: 100px;
 }
 
-/* ===== NAVIGATION BAR ===== */
+
+
+/* ////////////////////////////// HEADINGS ////////////////////////////// */
+/* Style for main headings with normal font weight and large size */
+h1.fw-normal {
+    font-family: 'Switzer', sans-serif;
+    font-size: 2.5rem;
+}
+
+
+
+/* ////////////////////////////// NAVIGATION BAR ////////////////////////////// */
+/* Rounded navigation bar with bottom margin */
 .navbar {
     border-radius: 30px !important;
     margin-bottom: 50px !important;
 }
 
-/* Mobile hamburger button */
+
+/* Mobile hamburger button: size and alignment */
 .navbar-toggler {
     position: relative;
     width: 40px;
@@ -31,26 +39,33 @@ body {
     justify-content: center;
 }
 
-/* Hamburger and X menu icons */
+
+/* Hamburger and X menu icons: color and size */
 .navbar-toggler .fa-bars,
 .navbar-toggler .fa-times {
     color: white;
     font-size: 24px;
 }
 
+
+/* X icon: ensure correct size and line height */
 .navbar-toggler .fa-times {
     font-size: 24px;
     line-height: 1;
 }
 
-/* Remove button outline */
+
+/* Remove outline and shadow from hamburger button when focused or active */
 .navbar-toggler:focus,
 .navbar-toggler:active {
     outline: none;
     box-shadow: none;
 }
 
-/* ===== GENRES SUBMENU ===== */
+
+
+/* ////////////////////////////// GENRES SUBMENU ////////////////////////////// */
+/* Dropdown menu for genres: background, border, padding, and animation */
 .navbar-nav .dropdown-menu {
     background-color: #2699cb;
     border: 0;
@@ -61,6 +76,8 @@ body {
     transition: opacity 0.3s ease;
 }
 
+
+/* Genre dropdown items: padding, color, and transition effects */
 .navbar-nav .dropdown-item {
     padding: 10px 20px;
     color: white;
@@ -68,39 +85,56 @@ body {
     transition: background-color 0.2s, color 0.2s;
 }
 
+
+/* Remove border from last dropdown item */
 .navbar-nav .dropdown-item:last-child {
     border-bottom: none;
 }
 
+
+/* Genre dropdown item hover/focus: highlight background */
 .navbar-nav .dropdown-item:hover,
 .navbar-nav .dropdown-item:focus {
     background-color: #32ADE6;
     color: white;
     outline: none;
+    border-radius: 0 !;
 }
 
-/* ===== MAIN BUTTONS (Add/Cancel) ===== */
+
+
+/* ////////////////////////////// MAIN BUTTONS (Add/Cancel) ////////////////////////////// */
+/* Main info button: blue background, no border */
 .btn-info {
     background-color: #32ADE6;
     border: none;
 }
 
+
+/* Info button hover: darker blue */
 .btn-info:hover {
     background-color: #2699cb;
 }
 
+
+/* Outline info button: blue text, no border, transparent background */
 .btn-outline-info {
     border: none;
     color: #32ADE6;
     background-color: transparent;
 }
 
+
+/* Outline info button hover: blue border */
 .btn-outline-info:hover {
     border: 2px solid #32ADE6;
     background-color: transparent;
 }
 
-/* ===== BOOKS TABLE ===== */
+
+
+/* ////////////////////////////// BOOKS TABLE ////////////////////////////// */
+/* Table cells: allow text wrapping, remove side borders, set top/bottom borders and padding */
 .table th,
 .table td {
     white-space: normal !important;
@@ -112,30 +146,37 @@ body {
     padding: 1rem;
 }
 
+
+/* Table header: grey text, normal weight, white background */
 .table thead th {
     color: #8E8E93;
     font-weight: normal;
     background-color: white;
 }
 
-/* Kebab button */
+
+/* Kebab button (three dots menu): transparent background, no border, black color */
 .btn-kebab {
     background-color: transparent;
     border: none;
     color: black;
 }
 
-/* Hover effect */
+
+/* Kebab button hover: blue color */
 .btn-kebab:hover {
     color: #2699cb;
 }
 
-/* Dropdown menu styles */
+
+/* Dropdown menu: white background, light border */
 .dropdown-menu {
     background-color: #fff;
     border: 1px solid #E5E5EA;
 }
 
+
+/* Dropdown item focus/active: blue background, white text */
 .dropdown-item:focus,
 .dropdown-item:active {
     background-color: #32ADE6 !important;
@@ -143,7 +184,9 @@ body {
 }
 
 
-/* ===== MAIN PAGE BOOK ILLUSTRATION ===== */
+
+/* ////////////////////////////// MAIN PAGE BOOK ILLUSTRATION ////////////////////////////// */
+/* Container for book illustration: center and space from top */
 .book-illustration-container {
     display: flex;
     justify-content: center;
@@ -152,19 +195,27 @@ body {
     margin-top: 100px !important;
 }
 
+
+/* Book illustration image: max width and auto height */
 .book-illustration {
     max-width: 100px;
     width: 100%;
     height: auto;
 }
 
-/* ===== ADD NEW BOOK FORM ===== */
+
+
+/* ////////////////////////////// ADD NEW BOOK FORM ////////////////////////////// */
+/* Main form card: white background, no shadow, max width, rounded corners */
 .form-add-book-bg {
     background-color: white !important;
     box-shadow: none !important;
+    max-width: 950px;
+    border-radius: 1.5rem;
 }
 
-/* Form fields */
+
+/* Form fields and select: light grey background, no border/shadow, padding */
 .form-add-book-bg .form-control,
 .form-add-book-bg .form-select {
     background-color: #F2F2F7 !important;
@@ -174,20 +225,23 @@ body {
     padding-left: 20px;
 }
 
-/* Field focus */
+
+/* Form fields/select focus: no border */
 .form-add-book-bg .form-control:focus,
 .form-add-book-bg .form-select:focus {
     border: none !important;
 }
 
-/* Form actions */
+
+/* Form actions: horizontal layout, spacing between buttons */
 .form-add-book-bg .form-actions {
     display: flex;
     gap: 2rem;
     justify-content: flex-start;
 }
 
-/* Form image */
+
+/* Form illustration image: max width, padding, margin */
 .illustration-phone {
     max-width: 80%;
     height: auto;
@@ -195,13 +249,41 @@ body {
     margin-right: 2em;
 }
 
-/* Responsive image version */
+
+/* Responsive form illustration: max width, auto height */
 .illustration-adaptable {
     max-width: 80%;
     height: auto;
 }
 
-/* ===== FOOTER ===== */
+
+
+/* ////////////////////////////// FORM LABEL COLORS (from inline) ////////////////////////////// */
+/* All form labels with normal weight: grey color */
+.form-label.fw-normal {
+    color: #8E8E93;
+}
+
+
+
+/* ////////////////////////////// STOCK FIELD WIDTH (from inline) ////////////////////////////// */
+/* Wrapper for stock input: limit width */
+.form-stock-wrapper {
+    max-width: 140px;
+}
+
+
+
+/* ////////////////////////////// CANCEL BUTTON COLOR (from inline) ////////////////////////////// */
+/* Cancel button: force blue color */
+.btn-outline-info.hover-outline {
+    color: #32ADE6 !important;
+}
+
+
+
+/* ////////////////////////////// FOOTER ////////////////////////////// */
+/* Footer: font, fixed at bottom, full width, padding */
 footer {
     font-family: 'Switzer', sans-serif;
     font-size: 15px;
@@ -214,9 +296,12 @@ footer {
     padding: 15px 0;
 }
 
-/* ===== RESPONSIVE ===== */
-/* Genres dropdown menu */
+
+
+/* ////////////////////////////// RESPONSIVE ////////////////////////////// */
+/* --- Genres dropdown menu on tablet/mobile --- */
 @media (max-width: 768px) {
+    /* Dropdown menu: static position, full width, rounded corners, no shadow */
     .navbar-nav .dropdown-menu {
         position: static !important;
         width: 100%;
@@ -226,33 +311,40 @@ footer {
         margin-top: 0.25rem;
     }
 
+    /* Dropdown item hover: rounded corners */
     .navbar-nav .dropdown-item:hover {
         border-radius: 10px;
     }
 
+    /* Show dropdown when navbar expanded */
     .navbar-collapse.show .dropdown-menu {
         display: block !important;
         opacity: 1 !important;
     }
 
+    /* Hide dropdown arrow */
     .navbar-nav .dropdown-toggle::after {
         display: none;
     }
 }
 
-/* Mobile view */
+
+/* --- Mobile view adjustments --- */
 @media (max-width: 576px) {
+    /* Body: smaller margins, less bottom padding */
     body {
         margin-left: 6%;
         margin-right: 6%;
         padding-bottom: 70px;
     }
 
-    h1 {
+    /* Headings: ensure large font size on mobile */
+    h1,
+    h1.fw-normal {
         font-size: 2.5rem !important;
     }
 
-    /* Mobile buttons */
+    /* Buttons: smaller, square, centered icons */
     .btn {
         width: 40px;
         height: 40px;
@@ -262,21 +354,26 @@ footer {
         justify-content: center;
     }
 
+    /* Button icons: remove margin */
     .btn i {
         margin: 0 !important;
     }
 }
 
-/* Table-specific adaptations */
-@media (min-width: 751px) {
 
+/* --- Table-specific adaptations for desktop --- */
+@media (min-width: 751px) {
+    /* Table columns: fixed width */
     .table th,
     .table td {
         width: 20% !important;
     }
 }
 
-@media (max-width: 750px) {
+
+/* --- Table-specific adaptations for mobile --- */
+@media (max-width: 650px) {
+    /* Hide table headers on mobile */
     table.mobile-optimised thead {
         position: absolute;
         left: -9999px;
@@ -284,6 +381,7 @@ footer {
         visibility: hidden;
     }
 
+    /* Make table, tbody, tr, td block elements and remove border radius */
     table.mobile-optimised,
     table.mobile-optimised tbody,
     table.mobile-optimised tr,
@@ -294,12 +392,14 @@ footer {
         border-color: white;
     }
 
+    /* Table rows: rounded corners, light background, margin below */
     table.mobile-optimised tr {
         margin-bottom: 1rem;
         border-radius: 10px;
         background: #F2F2F7;
     }
 
+    /* Table cells: left-aligned, extra left padding, relative for label */
     table.mobile-optimised td {
         text-align: left;
         padding-left: 40%;
@@ -307,12 +407,13 @@ footer {
         background: none;
     }
 
+    /* Last cell: left padding and centered text */
     .td-end {
         padding-left: 1em !important;
         text-align: center !important;
     }
 
-
+    /* Add label before each cell showing the column name */
     table.mobile-optimised td:before {
         content: attr(data-th);
         font-weight: normal !important;
@@ -325,83 +426,93 @@ footer {
     }
 }
 
-/* Tablet view */
+
+/* --- Tablet view for form images and actions --- */
 @media (max-width: 768px) {
+    /* Form illustration: smaller on tablet */
     .illustration-phone {
         max-width: 40%;
     }
 
+    /* Responsive image: smaller on tablet */
     .illustration-adaptable {
         max-width: 70%;
     }
 
-    /* Accións do formulario */
+    /* Form actions: stack vertically, less gap */
     .form-actions {
         flex-direction: column;
         gap: 0.5rem;
     }
 
+    /* Form buttons: full width */
     .form-actions .btn {
         width: 100%;
     }
 }
 
-/* Kebab menu on smaller screens */
-@media (max-width: 750px) {
+
+/* --- Kebab menu on smaller screens --- */
+@media (max-width: 650px) {
+    /* Remove padding from last cell */
     .td-end {
         padding: none;
     }
 
+    /* Hide kebab button on mobile */
     .btn-kebab {
         display: none !important;
-        /* Hide the kebab button */
     }
 
+    /* Kebab dropdown: horizontal layout, centered, full width */
     .kebab-dropdown {
         display: flex;
         flex-direction: row;
-        /* Align items horizontally */
         justify-content: center;
         width: 100%;
-        /* Occupy full width of the td */
     }
 
+    /* Dropdown menu: static, horizontal, centered, light background, no border, spacing */
     .dropdown-menu {
         position: static;
         display: flex;
         flex-direction: row;
-        /* Change to row for horizontal alignment */
         align-items: center;
-        /* Center items vertically */
         background-color: #F2F2F7;
-        /* Background color */
         border: none;
         padding: 0;
         margin: 0;
         width: auto;
-        /* Adjust width to fit content */
         gap: 20px !important;
     }
 
+    /* Dropdown items: padding, rounded, spacing, auto width */
     .dropdown-item {
         padding: 0.5rem 1rem;
-        /* Adjust padding */
         border-radius: 10px;
-        margin-right: 0.5rem;
-        /* Space between items */
         width: auto;
-        /* Adjust width to fit content */
     }
 
+    /* Dropdown item hover: pointer, light background */
     .dropdown-item:hover {
         cursor: pointer;
         background-color: #F2F2F7;
     }
 
+    /* Dropdown item focus/active: blue background, white text */
     .dropdown-item:focus,
     .dropdown-item:active {
         background-color: #32ADE6 !important;
         color: white !important;
     }
+}
 
+
+
+/* ////////////////////////////// OTHERS ////////////////////////////// */
+/* Style the icons in the iniciar_bd.php checklist */
+.check-icon {
+    font-size: 1.3rem;
+    margin-right: 1.5em;
+    vertical-align: middle;
 }

@@ -5,82 +5,8 @@
 -->
 
 <?php
-include_once ('PHP/conexion_bd.php');
-include_once ('PHP/funcions-crud.php');
-
-try {
-    // Variables to store the info of the book that is going to be updated
-    $isbn_update = "";
-    $title_update = "";
-    $author_update = "";
-    $genre_update = "";
-    $stock_update = "";
-
-    // If there's an ISBN present in the url
-    if (isset($_GET['isbn'])) {
-        // Store the ISBN value in this variable
-        $isbn_update = $_GET['isbn'];
-
-        // Retrieve the info of the book that is going to be updated function
-        $booktoupdate = getbook($isbn_update);
-
-        // If there's at least one result and one row on the result
-        if ($booktoupdate && mysqli_num_rows($booktoupdate) > 0) {
-            // Make the result an associative array and store it in the variable
-            $booktoupdate_info = mysqli_fetch_assoc($booktoupdate);
-            // Making the associative array's values more accesible
-            $title_update = $booktoupdate_info['titulo'];
-            $author_update = $booktoupdate_info['autor'];
-            $genre_update = $booktoupdate_info['nome'];
-            $stock_update = $booktoupdate_info['stock'];
-        }
-    }
-
-    // Process the form only if it was submitted via POST
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Rename the form items to something more manageable and avoid potential SQL inyections
-        $isbn = mysqli_real_escape_string($connection, $_POST['isbn']);
-        $title = mysqli_real_escape_string($connection, $_POST['titulo']);
-        $author = mysqli_real_escape_string($connection, $_POST['autor']);
-        $genre_name = mysqli_real_escape_string($connection, $_POST['xenero']);
-        $stock = intval($_POST['stock']);
-
-        // Get the genre id from its name function
-        $result_genre = getgenreid($genre_name);
-
-        // If there's at least 1 result
-        if ($result_genre && mysqli_num_rows($result_genre) > 0) {
-            // Obtain genre id
-            $row_genre = mysqli_fetch_assoc($result_genre);
-            $genre_id = $row_genre['id'];
-
-            // If isbn_update is not empty
-            if (!empty($_POST['isbn_update'])) {
-                // Update the book function
-                updatebook($isbn, $title, $author, $genre_id, $stock);
-
-            // If isbn_update is empty and the user is adding a new book
-            } else {
-                // Insert new book function
-                addbook($isbn, $title, $author, $genre_id, $stock);
-            }
-        // If there's no result
-        } else {
-            // Show this
-            return "Xénero non atopado.";
-        }
-    }
-
-    // Obtain genres for the navbar function
-    $resultnavbar = getgenrenames();
-    // Obtain genres for the form function
-    $resultform = getgenrenames();
-
-} catch (Exception $e) {
-    return "Error de conexión: " . $e->getMessage();
-}
+require_once 'PHP/controlador_formulario.php';
 ?>
-
 
 <!DOCTYPE html>
 <html lang="gl">
@@ -99,6 +25,8 @@ try {
     <link rel="stylesheet" href="css/estilo.css" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="ASSETS/icon.svg">
+    <!-- Switzer font -->
+    <link href="https://fonts.cdnfonts.com/css/switzer" rel="stylesheet">
 </head>
 
 <body class="bg-white">
@@ -108,7 +36,7 @@ try {
     <!-- Form container -->
     <div class="container d-flex align-items-center justify-content-center p-0">
         <!-- Card -->
-        <div class="card shadow-sm border-0 w-100 form-add-book-bg" style="max-width: 950px; border-radius: 1.5rem;">
+        <div class="card shadow-sm border-0 w-100 form-add-book-bg">
             <div class="row g-0">
                 <!-- Left column -->
                 <div class="col-md-5 d-flex flex-column align-items-center justify-content-center py-md-4">
@@ -136,21 +64,21 @@ try {
                             <!-- ISBN -->
                             <div class="mb-4">
                                 <!-- Label -->
-                                <label for="isbn" class="form-label fw-normal" style="color: #8E8E93">ISBN</label>
+                                <label for="isbn" class="form-label fw-normal">ISBN</label>
                                 <!-- Answer area that prefills the form if there's an ISBN in the url with "value" -->
                                 <input type="text" class="form-control rounded-pill" id="isbn" name="isbn" placeholder="Introduce o ISBN" required value="<?php echo htmlspecialchars($isbn_update); ?>" <?php if ($isbn_update); ?>>
                             </div>
                             <!-- Title -->
                             <div class="mb-4">
                                 <!-- Label -->
-                                <label for="titulo" class="form-label fw-normal" style="color: #8E8E93">Título</label>
+                                <label for="titulo" class="form-label fw-normal">Título</label>
                                 <!-- Answer area that prefills the form if there's an ISBN in the url with "value" -->
                                 <input type="text" class="form-control rounded-pill" id="titulo" name="titulo" placeholder="Introduce o título" required value="<?php echo htmlspecialchars($title_update); ?>">
                             </div>
                             <!-- Autor -->
                             <div class="mb-4">
                                 <!-- Label -->
-                                <label for="autor" class="form-label fw-normal" style="color: #8E8E93">Autor</label>
+                                <label for="autor" class="form-label fw-normal">Autor</label>
                                 <!-- Answer area that prefills the form if there's an ISBN in the url with "value" -->
                                 <input type="text" class="form-control rounded-pill" id="autor" name="autor" placeholder="Introduce o autor" required value="<?php echo htmlspecialchars($author_update); ?>">
                             </div>
@@ -159,7 +87,7 @@ try {
                                 <!-- Genre selection dropdown -->
                                 <div class="flex-fill">
                                     <!-- Dropdown label -->
-                                    <label for="xenero" class="form-label fw-normal" style="color: #8E8E93">Xénero</label>
+                                    <label for="xenero" class="form-label fw-normal">Xénero</label>
                                     <!-- Genre selection dropdown -->
                                     <select id="xenero" class="form-select rounded-pill" name="xenero" required>
                                         <!-- The default behaviour with a title disabled option as placeholder -->
@@ -174,12 +102,13 @@ try {
                                             echo '<option value="' . htmlspecialchars($row['nome']) . '" ' . $selected . '>' . htmlspecialchars($row['nome']) . '</option>';
                                         }
                                         ?>
+
                                     </select>
                                 </div>
                                 <!-- Stock -->
-                                <div style="max-width: 140px;">
+                                <div class="form-stock-wrapper">
                                     <!-- Label -->
-                                    <label for="stock" class="form-label fw-normal" style="color: #8E8E93">Stock</label>
+                                    <label for="stock" class="form-label fw-normal">Stock</label>
                                     <!-- Answer area that prefills the form if there's an ISBN in the url with "value" -->
                                     <input type="number" class="form-control rounded-pill" id="stock" name="stock" placeholder="Ex. 10" min="0" required value="<?php echo htmlspecialchars($stock_update); ?>">
                                 </div>
@@ -190,7 +119,7 @@ try {
                                 <!-- Add -->
                                 <button type="submit" class="btn btn-info text-white rounded-pill px-4">Engadir</button>
                                 <!-- Cancel -->
-                                <a href="lista-libros.php" class="btn btn-outline-info rounded-pill px-4 hover-outline" style="color: #32ADE6;">Cancelar</a>
+                                <a href="lista-libros.php" class="btn btn-outline-info rounded-pill px-4 hover-outline">Cancelar</a>
                             </div>
                         </form>
                     </div>

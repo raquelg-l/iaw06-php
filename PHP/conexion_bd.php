@@ -1,9 +1,3 @@
-<!--                        
-╭──────────────────╮
-│ FEITO POR RAQUEL │
-╰──────────────────╯
--->
-
 <?php
 
 // This function connects the user to the database
