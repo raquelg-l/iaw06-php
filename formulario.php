@@ -5,22 +5,10 @@
 -->
 
 <?php
-// CONNECTION
-// Database variables
-$host = "localhost";
-$user = "root";
-$pwd = "abc123.";
-$db = "raquel_gonzalez_bd";
-$tablebooks = "libros";
-$tablegenre = "xenero";
-
-// Variable to store errors
-$msg = "";
+include_once ('PHP/conexion_bd.php');
+include_once ('PHP/funcions-crud.php');
 
 try {
-    // Connect to the database
-    $connection = mysqli_connect($host, $user, $pwd, $db);
-
     // Variables to store the info of the book that is going to be updated
     $isbn_update = "";
     $title_update = "";
@@ -33,19 +21,13 @@ try {
         // Store the ISBN value in this variable
         $isbn_update = $_GET['isbn'];
 
-        // Query to retrieve the info of the book that is going to be updated
-        $booktoupdate = "SELECT $tablebooks.*, $tablegenre.nome
-                         FROM $tablebooks 
-                         JOIN $tablegenre ON $tablebooks.xenero_id = $tablegenre.id
-                         WHERE isbn = '$isbn_update'";
-
-        // Execution of the query
-        $result_update = mysqli_query($connection, $booktoupdate);
+        // Retrieve the info of the book that is going to be updated function
+        $booktoupdate = getbook($isbn_update);
 
         // If there's at least one result and one row on the result
-        if ($result_update && mysqli_num_rows($result_update) > 0) {
+        if ($booktoupdate && mysqli_num_rows($booktoupdate) > 0) {
             // Make the result an associative array and store it in the variable
-            $booktoupdate_info = mysqli_fetch_assoc($result_update);
+            $booktoupdate_info = mysqli_fetch_assoc($booktoupdate);
             // Making the associative array's values more accesible
             $title_update = $booktoupdate_info['titulo'];
             $author_update = $booktoupdate_info['autor'];
@@ -56,16 +38,15 @@ try {
 
     // Process the form only if it was submitted via POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Rename the form items to something more manageable (also avoid potential SQL injections)
+        // Rename the form items to something more manageable and avoid potential SQL inyections
         $isbn = mysqli_real_escape_string($connection, $_POST['isbn']);
         $title = mysqli_real_escape_string($connection, $_POST['titulo']);
         $author = mysqli_real_escape_string($connection, $_POST['autor']);
         $genre_name = mysqli_real_escape_string($connection, $_POST['xenero']);
         $stock = intval($_POST['stock']);
 
-        // Get the genre id from its name in xenero table
-        $sql_genre = "SELECT id FROM $tablegenre WHERE nome = '$genre_name'";
-        $result_genre = mysqli_query($connection, $sql_genre);
+        // Get the genre id from its name function
+        $result_genre = getgenreid($genre_name);
 
         // If there's at least 1 result
         if ($result_genre && mysqli_num_rows($result_genre) > 0) {
@@ -75,55 +56,28 @@ try {
 
             // If isbn_update is not empty
             if (!empty($_POST['isbn_update'])) {
-                // Update the book in the database
-                $sql_update = "UPDATE $tablebooks 
-                               SET titulo='$title', autor='$author', xenero_id=$genre_id, stock=$stock WHERE isbn='$isbn'";
-                // If the update takes place
-                if (mysqli_query($connection, $sql_update)) {
-                    // Redirect to the main page with a confirmation
-                    header("Location: lista-libros.php?update=ok");
-                    // Stop the script
-                    exit();
-                    // If the deletion query is not executed
-                } else {
-                    // Show this
-                    $msg = "Error actualizando o libro.";
-                }
-                // If isbn_update is empty and the user is adding a new book
-            } else {
-                // Query to insert the new book
-                $sql_insert = "INSERT INTO $tablebooks (isbn, titulo, autor, xenero_id, stock) VALUES ('$isbn', '$title', '$author', $genre_id, $stock)";
+                // Update the book function
+                updatebook($isbn, $title, $author, $genre_id, $stock);
 
-                // If the insertion of the new book takes place
-                if (mysqli_query($connection, $sql_insert)) {
-                    // Redirect to the main page with a confirmation
-                    header("Location: lista-libros.php?insert=ok");
-                    // Stop the script
-                    exit();
-                    // If the insertion of the new book doesn't take place
-                } else {
-                    // Show this
-                    $msg = "Error engadindo o libro.";
-                }
+            // If isbn_update is empty and the user is adding a new book
+            } else {
+                // Insert new book function
+                addbook($isbn, $title, $author, $genre_id, $stock);
             }
-            // If there's no result
+        // If there's no result
         } else {
             // Show this
-            $msg = "Xénero non atopado.";
+            return "Xénero non atopado.";
         }
     }
 
-    // Query to retrieve nome from xenero
-    $select = "SELECT nome FROM $tablegenre";
-    // Execute the query for the navbar
-    $resultnavbar = mysqli_query($connection, $select);
-    // Execute the query for the form
-    $resultform = mysqli_query($connection, $select);
+    // Obtain genres for the navbar function
+    $resultnavbar = getgenrenames();
+    // Obtain genres for the form function
+    $resultform = getgenrenames();
 
-    // CLOSE CONNECTION
-    mysqli_close($connection);
 } catch (Exception $e) {
-    $msg = "Connection error: " . $e->getMessage();
+    return "Error de conexión: " . $e->getMessage();
 }
 ?>
 
@@ -142,58 +96,14 @@ try {
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="estilo.css" />
+    <link rel="stylesheet" href="css/estilo.css" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="ASSETS/icon.svg">
 </head>
 
 <body class="bg-white">
     <!-- Navigation bar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-black rounded-pill px-3 py-2 my-3">
-        <!-- Logo -->
-        <a class="navbar-brand ms-3" href="lista-libros.php">
-            <!-- Logo image -->
-            <img src="ASSETS/logo.svg" alt="Logo" width="150" />
-        </a>
-
-        <!-- Phone view hamburger button -->
-        <button class="navbar-toggler border-0 me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Menú">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-times d-none"></i>
-        </button>
-
-        <!-- Phone view responsive menu -->
-        <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-            <!-- Genres dropdown -->
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <!-- Title -->
-                    <a class="nav-link dropdown-toggle text-white" href="lista-libros.php" role="button" data-bs-toggle="dropdown">
-                        Xéneros
-                    </a>
-                    <!-- Options -->
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <?php
-                        // For loop where that goes through the array that contains the result of the query defined
-                        for ($i = 0; $row = mysqli_fetch_array($resultnavbar, MYSQLI_ASSOC); $i++) {
-                            // Returns the nome field of all the records in the xenero table following the style of the page
-                            echo '<li><a class="dropdown-item" href="lista-libros.php">' . $row['nome'] . '</a></li>';
-                        }
-                        ?>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Search area -->
-            <form class="d-flex position-relative my-2 my-md-0">
-                <!-- Search form -->
-                <input class="form-control border-0 rounded-pill ps-4 pe-5 search-desktop-md" type="search" placeholder="Título, autor, xénero..." aria-label="Buscar" />
-                <!-- Magnifying glass icon -->
-                <span class="position-absolute end-0 top-50 translate-middle-y me-3 text-black">
-                    <i class="fas fa-search"></i>
-                </span>
-            </form>
-        </div>
-    </nav>
+    <?php include 'PHP/navbar.php'; ?>
 
     <!-- Form container -->
     <div class="container d-flex align-items-center justify-content-center p-0">
@@ -290,42 +200,14 @@ try {
     </div>
 
     <!-- Footer -->
-    <footer class="bg-black text-white fixed-bottom py-3">
-        <div class="d-flex justify-content-between align-items-center" style="margin: 0 5%;">
-            <!-- Left text -->
-            <span>© 2025 Raquel G-L para IAW06</span>
-            <!-- Icons on the right -->
-            <div class="d-flex gap-3">
-                <!-- GitHub -->
-                <a href="https://github.com/raquelg-l" class="text-white"><i class="fab fa-github"></i></a>
-                <!-- Mail -->
-                <a href="mailto:glez.erre@gmail.com" class="text-white"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-    </footer>
+    <?php include 'PHP/footer.php'; ?>
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!--Hamburger to X toggle in phone view -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggler = document.querySelector('.navbar-toggler');
-            const iconHamburger = toggler.querySelector('.fa-bars');
-            const iconClose = toggler.querySelector('.fa-times');
-            const navbarCollapse = document.getElementById('navbarContent');
+    <!-- JS for hamburger to X toggle in phone view -->
+    <script src="js/navbar-toggle.js"></script>
 
-            navbarCollapse.addEventListener('show.bs.collapse', function() {
-                iconHamburger.classList.add('d-none');
-                iconClose.classList.remove('d-none');
-            });
-
-            navbarCollapse.addEventListener('hide.bs.collapse', function() {
-                iconHamburger.classList.remove('d-none');
-                iconClose.classList.add('d-none');
-            });
-        });
-    </script>
 </body>
 
 </html>
