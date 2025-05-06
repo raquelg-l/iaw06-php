@@ -13,13 +13,14 @@ A web-based library management system implementing CRUD operations. Includes a B
 - **Database**: MySQL structure with books/genres relationship  
 - **Code Organization**: Separated concerns (views, database logic, includes)
 
-## Installation  
+## Set up 
 1. Clone repository:  
-   `git clone [repository-url]`  
-2. Import database:  
-   Execute `database_script.sql` in MySQL  
-3. Configure PHP:  
-   Set database credentials in `config/db.php`  
+   `git clone https://github.com/raquelg-l/iaw06-php`  
+2. Configure PHP:  
+   Set database credentials in `PHP/conexion_bd.php`
+3. Initialise database:  
+   Execute `iniciar_bd.php`
+
 
 ## Development Phases  
 ### Week 1: UI Mockup  
