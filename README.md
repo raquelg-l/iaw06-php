@@ -66,13 +66,13 @@ Sistema web de xestión de libros con operacións CRUD (Crear, Ler, Actualizar, 
 - **Base de Datos**: Estrutura MySQL con relación libros/xéneros  
 - **Organización do Código**: Separación de lóxica (vistas, base de datos, includes)
 
-## Instalación  
+## Configuración
 1. Clonar repositorio:  
-   `git clone [url-do-repositorio]`  
-2. Importar base de datos:  
-   Executar `database_script.sql` en MySQL  
-3. Configurar PHP:  
-   Establecer credenciais en `config/db.php`  
+   `git clone https://github.com/raquelg-l/iaw06-php`  
+2. Configurar PHP:
+   Establece as credenciais da base de datos en `PHP/conexion_bd.php`
+3. Inicializar a base de datos:
+   Executa `iniciar_bd.php`
 
 ## Fases de Desenvolvemento  
 ### Semana 1: Mockup da Interface  
