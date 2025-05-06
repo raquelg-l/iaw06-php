@@ -69,9 +69,9 @@ Sistema web de xestión de libros con operacións CRUD (Crear, Ler, Actualizar, 
 ## Configuración
 1. Clonar repositorio:  
    `git clone https://github.com/raquelg-l/iaw06-php`  
-2. Configurar PHP:
+2. Configurar PHP:  
    Establece as credenciais da base de datos en `PHP/conexion_bd.php`
-3. Inicializar a base de datos:
+3. Inicializar a base de datos:  
    Executa `iniciar_bd.php`
 
 ## Fases de Desenvolvemento  
