@@ -1,6 +1,6 @@
 <?php
 // Reference to the php file that has the connection function
-include_once('PHP/conexion_bd.php');
+include_once('conexion_bd.php');
 
 
 

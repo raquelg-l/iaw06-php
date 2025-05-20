@@ -1,11 +1,11 @@
 <?php
 // Link to the file that has the connection function
-include_once ('PHP/conexion_bd.php');
+include_once ('conexion_bd.php');
 // Variable that save the connection to the database
 $connection = connect_to_db();
 
 // Link to the file that has the CRUD functions
-include_once ('PHP/funcions-crud.php');
+include_once ('funcions-crud.php');
 
 // Run the code inside
 try {
